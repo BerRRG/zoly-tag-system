@@ -74,6 +74,7 @@ class CreateTagBookWebAttributesTable extends Migration
             $table->string('custom_dimension_metrics')->nullable();
             $table->string('additional')->nullable();
             $table->string('comments')->nullable();
+            $table->string('section')->nullable();
             $table->integer('tag_book_id')->unsigned()->nullable();
             $table->timestamps();
         });
