@@ -180,6 +180,13 @@
                 </div>
             </div>
 
+            <div class="col-sm-3">
+                <div class="form-group">
+                    {{ form::label('attribute[0][section]', 'Section') }}
+                    {{ form::text('attribute[0][section]', input::old('attribute[0][Section]'), array('class' => 'form-control')) }}
+                </div>
+            </div>
+
             <div class="col-sm-2">
                 <span data-repeater-delete="" class="btn btn-danger btn-sm">
                 <span class="glyphicon glyphicon-remove"></span> Delete
