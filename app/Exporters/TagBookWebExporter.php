@@ -6,14 +6,15 @@ use App\Model\TagBook;
 use App\Model\TagBookWebAttribute;
 use App\Decorator\WebHeaderDecorator;
 use App\Decorator\WebTableDecorator;
-use Maatwebsite\Excel\Concerns\FromQuery;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Illuminate\Support\Facades\DB;
 
-class TagBookWebExporter implements FromQuery, WithHeadings, ShouldAutoSize, WithEvents
+class TagBookWebExporter implements FromView, WithHeadings, ShouldAutoSize, WithEvents
 {
     protected $id;
 
@@ -31,6 +32,7 @@ class TagBookWebExporter implements FromQuery, WithHeadings, ShouldAutoSize, Wit
     {
         return TagBookWebAttribute::query()
             ->select(
+                'id',
                 'priority',
                 'reference_link_page',
                 'description',
@@ -47,9 +49,22 @@ class TagBookWebExporter implements FromQuery, WithHeadings, ShouldAutoSize, Wit
                 'event_value',
                 'custom_dimension_metrics',
                 'additional',
-                'comments'
+                'comments',
+                'section'
             )
             ->where('tag_book_id', $this->id);
+    }
+
+    public function view(): View
+    {
+        /*
+        foreach($this->query()->get() as $a) {
+            dd($a->id);
+        }
+         */
+        return view('exports.webattributes', [
+            'attributes' => $this->query()->get()
+        ]);
     }
 
     protected function getRows($id) {
@@ -58,16 +73,25 @@ class TagBookWebExporter implements FromQuery, WithHeadings, ShouldAutoSize, Wit
         return $query->count();
     }
 
+    protected function getSections($id) {
+        $query = $this->query();
+        $query->select('id');
+        $query->whereNotNull('section');
+
+        return $query->get();
+    }
+
     public function registerEvents(): array
     {
         return [
             AfterSheet::class => function(AfterSheet $event) {
                 $rows = $this->getRows($this->id);
+                $sections = $this->getSections($this->id);
 
-                $headerDecorator = new WebHeaderDecorator($event, $rows);
+                $headerDecorator = new WebHeaderDecorator($event, $rows, $sections);
                 $headerDecorator->decorate();
 
-                $tableDecorator = new WebTableDecorator($event, $rows);
+                $tableDecorator = new WebTableDecorator($event, $rows, $sections);
                 $tableDecorator->decorate();
             },
         ];
