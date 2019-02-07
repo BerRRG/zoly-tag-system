@@ -24,6 +24,7 @@ class TagBookWebAttribute extends Model
         'custom_dimension_metrics',
         'additional',
         'comments',
+        'section',
         'tag_book_id',
     ];
 
