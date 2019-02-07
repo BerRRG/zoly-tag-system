@@ -66,8 +66,11 @@ class TagBookController extends Controller
     public function edit($id)
     {
         $tagBook = TagBook::find($id);
+        $webAttributes = $tagBook->webAttributes()->get();
 
         return View::make('tag-book.edit')
+            ->with('webAttributes', $webAttributes)
+            ->with('webAttribute', new TagBookWebAttribute())
             ->with('tagBook', $tagBook);
     }
 
@@ -80,14 +83,14 @@ class TagBookController extends Controller
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->fails()) {
-            return Redirect::to('tag-books/create')
+            return Redirect::to('tag-books/'.$id.'/edit')
                 ->withErrors($validator)
                 ->withInput(Input::all());
         }
 
         $tagBook = TagBook::find($id);
-        $tagBook->name = Input::get('name');
-        $tagBook->save();
+        $saveFlow = new TagBookSaveFlow($tagBook, Input::all());
+        $saveFlow->save();
 
         Session::flash('message', 'Tag Book alterado com sucesso!');
 
