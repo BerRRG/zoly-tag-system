@@ -1,25 +1,225 @@
 <!DOCTYPE html>
 <html>
     @include('head')
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <body>
+
+<script>
+    window.onload = function() {
+        var repeater = $('.repeater-default').repeater({
+            initval: 1,
+        });
+
+        jQuery(".drag").sortable({
+            axis: "y",
+            cursor: 'pointer',
+            opacity: 0.5,
+            placeholder: "row-dragging",
+            delay: 150,
+            update: function(event, ui) {
+            console.log('repeaterVal');
+            console.log(repeater.repeaterVal());
+            console.log('serializeArray');
+            console.log(repeater.serializeArray());
+            }
+
+        }).disableSelection();
+    }
+
+</script>
+
 <div class="container">
-
-        <p class="title">Editar: {{ $tagBook->name }}</p>
-        <hr>
-        <a class="btn btn-primary caption menu" href="{{ URL::to('tag-books') }}">Listar consultórios</a>
-        <a class="btn btn-primary caption menu" href="{{ URL::to('tag-books/create') }}">Adicionar consultório</a>
-
+    <p class="title">Cadastro de Tag Book</p>
+    <hr>
+    <a class="btn btn-primary caption menu" href="{{ URL::to('tag-books') }}">Listar Tag Books</a>
 {{ Html::ul($errors->all()) }}
+{{ Form::open(['method' => 'PUT', 'route' => ['tag-books.update', $tagBook->id]]) }}
 
-{{ Form::model($tagBook, array('route' => array('tag-books.update', $tagBook->id), 'method' => 'PUT')) }}
-
-    <div class="panel panel-primary register">
-        <div class="form-group">
-            {{ Form::label('name', 'Nome') }}
-            {{ Form::text('name', null, array('class' => 'form-control')) }}
+    <div class="painel panel-primary register">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    {{ Form::label('name', 'Nome') }}
+                    {{ Form::text('name', Input::old('name') ? Input::old('name') : $tagBook->name, array('class' => 'form-control')) }}
+                </div>
+            </div>
         </div>
     </div>
-    {{ Form::submit('Inserir alterações', array('class' => 'btn btn-primary')) }}
+
+    <hr>
+
+    <div>
+    <div class="repeater-default">
+      <div data-repeater-list="attribute" class="drag">
+
+
+          @foreach($webAttributes as $key => $webAttribute)
+
+
+            <div data-repeater-item="">
+            <div class="row">
+                <div class="col-sm-1">
+                    <div class="form-group">
+                        {{ form::label('attribute['.$key.'][priority]', 'Priority') }}
+                        {{ form::text('attribute['.$key.'][priority]', input::old('attribute['.$key.'][priority]') ? input::old('attribute['.$key.'][priority]') : $webAttribute->priority, array('class' => 'form-control')) }}
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('attribute['.$key.'][reference_link_page]', 'Reference Link Page') }}
+                        {{ form::text('attribute['.$key.'][reference_link_page]', input::old('attribute['.$key.'][reference_link_page]')? input::old('attribute['.$key.'][reference_link_page]') : $webAttribute->reference_link_page , array('class' => 'form-control')) }}
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('attribute['.$key.'][description]', 'Description') }}
+                        {{ form::text('attribute['.$key.'][description]', input::old('attribute['.$key.'][description]') ? input::old('attribute['.$key.'][description]') : $webAttribute->description, array('class' => 'form-control')) }}
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('attribute['.$key.'][data_layer_data_attribute]', 'dataLayer ou data-attributes') }}
+                        {{ form::text('attribute['.$key.'][data_layer_data_attribute]', input::old('attribute['.$key.'][data_layer_data_attribute]') ? input::old('attribute['.$key.'][data_layer_data_attribute]') : $webAttribute->data_layer_data_attribute, array('class' => 'form-control')) }}
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    {{ form::label('attribute['.$key.'][status_implemetation_data_layer_data_attribute]', 'Status Implementation dataLayer ou data-attributes', ['class' => ' col-2 text-truncate']) }}
+                    {{ form::select('attribute['.$key.'][status_implemetation_data_layer_data_attribute]', $webAttribute->implementationStatus, input::old('attribute['.$key.'][status_implemetation_data_layer_data_attribute]') ? input::old('attribute['.$key.'][status_implemetation_data_layer_data_attribute]') : $webAttribute->status_implementation_data_layer_data_attribute, array('class' => 'form-control')) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        {{ form::label('attribute['.$key.'][status_implementation_tag_manager]', 'Status Implementation TagManager') }}
+                        {{ form::select('attribute['.$key.'][status_implementation_tag_manager]', $webAttribute->implementationStatus, input::old('attribute['.$key.'][status_implementation_tag_manager]') ? input::old('attribute['.$key.'][status_implementation_tag_manager]') : $webAttribute->status_implementation_tag_manager, array('class' => 'form-control')) }}
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        {{ form::label('attribute['.$key.'][status_google_analytics]', 'Status Google Analytics') }}
+                        {{ form::select('attribute['.$key.'][status_google_analytics]', $webAttribute->implementationStatus, input::old('attribute['.$key.'][status_google_analytics]') ? input::old('attribute['.$key.'][status_google_analytics]') : $webAttribute->status_google_analytics, array('class' => 'form-control')) }}
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        {{ form::label('attribute['.$key.'][track_type]', 'Track Type') }}
+                        {{ form::select('attribute['.$key.'][track_type]', $webAttribute->trackType, input::old('attribute['.$key.'][track_type]') ? input::old('attribute['.$key.'][track_type]') : $webAttribute->track_type, array('class' => 'form-control')) }}
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('attribute['.$key.'][tag_name]', 'Tag Name') }}
+                        {{ form::text('attribute['.$key.'][tag_name]', input::old('attribute['.$key.'][tag_name]') ? input::old('attribute['.$key.'][tag_name]') : $webAttribute->tag_name, array('class' => 'form-control')) }}
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('attribute['.$key.'][fields_to_set]', 'Fields to Set') }}
+                        {{ form::text('attribute['.$key.'][fields_to_set]', input::old('attribute['.$key.'][fields_to_set]') ? input::old('attribute['.$key.'][fields_to_set]') : $webAttribute->fields_to_set, array('class' => 'form-control')) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('attribute['.$key.'][event_category]', 'Event Category') }}
+                        {{ form::text('attribute['.$key.'][event_category]', input::old('attribute['.$key.'][event_category]') ? input::old('attribute['.$key.'][event_category]') : $webAttribute->event_category, array('class' => 'form-control')) }}
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('attribute['.$key.'][event_action]', 'Event Action') }}
+                        {{ form::text('attribute['.$key.'][event_action]', input::old('attribute['.$key.'][event_action]') ? input::old('attribute['.$key.'][event_action]') : $webAttribute->event_action, array('class' => 'form-control')) }}
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('attribute['.$key.'][event_label_var]', 'Event Label/Var') }}
+                        {{ form::text('attribute['.$key.'][event_label_var]', input::old('attribute['.$key.'][event_label_var]') ? input::old('attribute['.$key.'][event_label_var]') : $webAttribute->event_label_var, array('class' => 'form-control')) }}
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('attribute['.$key.'][event_value]', 'Event Value') }}
+                        {{ form::text('attribute['.$key.'][event_value]', input::old('attribute['.$key.'][event_value]') ? input::old('attribute['.$key.'][event_value]') : $webAttribute->event_value, array('class' => 'form-control')) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('attribute['.$key.'][custom_dimension_metrics]', 'Custom Dimensions & Metrics') }}
+                        {{ form::text('attribute['.$key.'][custom_dimension_metrics]', input::old('attribute['.$key.'][custom_dimension_metrics]') ? input::old('attribute['.$key.'][custom_dimension_metrics]') : $webAttribute->custom_dimension_metrics, array('class' => 'form-control')) }}
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('attribute['.$key.'][additional]', 'Additional') }}
+                        {{ form::text('attribute['.$key.'][additional]', input::old('attribute['.$key.'][additional]') ? input::old('attribute['.$key.'][additional]') : $webAttribute->additional, array('class' => 'form-control')) }}
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('attribute['.$key.'][comments]', 'Comments') }}
+                        {{ form::text('attribute['.$key.'][comments]', input::old('attribute['.$key.'][comments]') ? input::old('attribute['.$key.'][comments]') : $webAttribute->comments, array('class' => 'form-control')) }}
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('attribute['.$key.'][section]', 'Section') }}
+                        {{ form::text('attribute['.$key.'][section]', input::old('attribute['.$key.'][Section]') ? input::old('attribute['.$key.'][Section]') : $webAttribute->section, array('class' => 'form-control')) }}
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <span data-repeater-delete="" class="btn btn-danger btn-sm">
+                    <span class="glyphicon glyphicon-remove"></span> Delete
+                    </span>
+                </div>
+            </div>
+            <hr>
+            </div>
+
+
+
+
+            @endforeach
+
+
+
+        </div>
+
+        <div class="row form-group">
+            <div class="col-sm-11">
+            <span data-repeater-create="" class="btn btn-info btn-md">
+                <span class="glyphicon glyphicon-plus"></span> Add
+            </span>
+            </div>
+        </div>
+        </div>
+    </div>
+    {{ Form::submit('Salvar Tag Book', array('class' => 'btn btn-primary buttonCad')) }}
 
 {{ Form::close() }}
 
