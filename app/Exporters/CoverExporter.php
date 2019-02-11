@@ -34,6 +34,7 @@ class CoverExporter implements FromView, ShouldAutoSize, WithEvents, WithTitle
                 'user_mail',
                 'ga_code',
                 'gtm_code',
+                'url',
                 'updated_at'
             )->where('id', $this->id);
     }
@@ -41,7 +42,7 @@ class CoverExporter implements FromView, ShouldAutoSize, WithEvents, WithTitle
     public function view(): View
     {
         return view('exports.cover', [
-            'attributes' => $this->query()->get()
+            'tagBook' => $this->query()->get()->first()
         ]);
     }
 
