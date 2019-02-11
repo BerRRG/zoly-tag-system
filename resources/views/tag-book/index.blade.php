@@ -17,14 +17,14 @@
     <thead>
         <tr>
             <td>ID</td>
-            <td>Nome</td>
+            <td>Nome do cliente</td>
         </tr>
     </thead>
     <tbody>
     @foreach($tagBooks as $key => $value)
         <tr>
             <td>{{ $value->id }}</td>
-            <td>{{ $value->name }}</td>
+            <td>{{ $value->client_name }}</td>
 
             <td>
                 <div class="pull-right">

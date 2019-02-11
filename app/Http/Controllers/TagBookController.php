@@ -36,7 +36,10 @@ class TagBookController extends Controller
     public function store()
     {
         $rules = [
-            'name' => 'required',
+            'client_name' => 'required',
+            'project_name' => 'required',
+            'user_name' => 'required',
+            'user_mail' => 'required',
         ];
 
         $validator = Validator::make(Input::all(), $rules);
@@ -66,7 +69,7 @@ class TagBookController extends Controller
     public function edit($id)
     {
         $tagBook = TagBook::find($id);
-        $webAttributes = $tagBook->webAttributes()->get();
+        $webAttributes = $tagBook->webAttributes()->orderBy('order')->get();
 
         return View::make('tag-book.edit')
             ->with('webAttributes', $webAttributes)
@@ -77,7 +80,10 @@ class TagBookController extends Controller
     public function update($id)
     {
         $rules = [
-            'name' => 'required',
+            'client_name' => 'required',
+            'project_name' => 'required',
+            'user_name' => 'required',
+            'user_mail' => 'required',
         ];
 
         $validator = Validator::make(Input::all(), $rules);
@@ -114,7 +120,6 @@ class TagBookController extends Controller
         $client = (new GoogleDocClient())->getClient();
 
         $driveService = new \Google_Service_Drive($client);
-
 
         $test = new \Google_Service_Drive_DriveFile([
             'name' => 'Teste1',

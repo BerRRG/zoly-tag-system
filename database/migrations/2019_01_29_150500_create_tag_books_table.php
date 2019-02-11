@@ -15,7 +15,13 @@ class CreateTagBooksTable extends Migration
     {
         Schema::create('tag_books', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('client_name');
+            $table->string('project_name');
+            $table->string('user_name');
+            $table->string('user_mail');
+            $table->string('ga_code')->nullable();
+            $table->string('gtm_code')->nullable();
+            $table->string('url')->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });

@@ -3,7 +3,7 @@
     <td>{{ $attribute->reference_link_page }}</td>
     <td>{{ $attribute->description }}</td>
     <td>{{ $attribute->data_layer_data_attribute }}</td>
-    <td>{{ $attribute->status_implementation_data_layer_data_Attribute }}</td>
+    <td>{{ $attribute->status_implementation_data_layer_data_attribute }}</td>
     <td>{{ $attribute->status_implementation_tag_manager }}</td>
     <td>{{ $attribute->status_google_analytics }}</td>
     <td>{{ $attribute->track_type }}</td>

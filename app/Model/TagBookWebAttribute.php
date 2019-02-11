@@ -26,6 +26,7 @@ class TagBookWebAttribute extends Model
         'comments',
         'section',
         'tag_book_id',
+        'order',
     ];
 
     public $implementationStatus = [
