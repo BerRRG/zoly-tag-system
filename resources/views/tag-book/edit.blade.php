@@ -231,14 +231,7 @@
             </div>
             <hr>
             </div>
-
-
-
-
             @endforeach
-
-
-
         </div>
 
         <div class="row form-group">
@@ -250,10 +243,96 @@
         </div>
         </div>
     </div>
+
+    <h1>GA Elements</h1>
+    <div class="repeater-default">
+      <div data-repeater-list="ga-element" class="drag">
+          @foreach($gaElements as $key => $gaElement)
+            <div data-repeater-item="">
+                <input type="hidden" value="{{$gaElement->id}}" name="attribute[{{$key}}][id]">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('ga_element[0][type]', 'Type') }}
+                            {{ form::text('ga_element[0][type]', input::old('ga_element[0][type]') ? input::old('ga_element[0][type]') :$gaElement->type, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('ga_element[0][index]', 'Index') }}
+                            {{ form::text('ga_element[0][index]', input::old('ga_element[0][index]') ? input::old('ga_element[0][index]') : $gaElement->index, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('ga_element[0][name]', 'Name') }}
+                            {{ form::text('ga_element[0][name]', input::old('ga_element[0][name]') ? input::old('ga_element[0][name]') : $gaElement->name, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('ga_element[0][description]', 'Description') }}
+                            {{ form::text('ga_element[0][description]', input::old('ga_element[0][description]') ? input::old('ga_element[0][description]') : $gaElement->description, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('ga_element[0][format_example]', 'Format / Example') }}
+                            {{ form::text('ga_element[0][format_example]', input::old('ga_element[0][format_example]') ? input::old('ga_element[0][format_example]') : $gaElement->format_example, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('ga_element[0][scope]', 'Scope') }}
+                            {{ form::text('ga_element[0][scope]', input::old('ga_element[0][scope]') ? input::old('ga_element[0][scope]') : $gaElement->scope, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('ga_element[0][status]', 'Status') }}
+                            {{ form::text('ga_element[0][status]', input::old('ga_element[0][status]') ? input::old('ga_element[0][status]') : $gaElement->status, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('ga_element[0][comment]', 'Comment') }}
+                            {{ form::text('ga_element[0][comment]', input::old('ga_element[0][comment]') ? input::old('ga_element[0][comment]') : $gaElement->comment, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('ga_element[0][section]', 'Section') }}
+                            {{ form::text('ga_element[0][section]', input::old('ga_element[0][section]') ? input::old('ga_element[0][section]') : $gaElement->section, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <span data-repeater-delete="" class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-remove"></span> Delete
+                        </span>
+                    </div>
+                </div>
+            </div>
+            </br>
+        @endforeach
+      </div>
+      </br>
+      <div class="row form-group">
+          <div class="col-sm-11">
+          <span data-repeater-create="" class="btn btn-info btn-md">
+              <span class="glyphicon glyphicon-plus"></span> Add
+          </span>
+          </div>
+      </div>
+    </div>
     {{ Form::submit('Salvar Tag Book', array('class' => 'btn btn-primary buttonCad')) }}
 
 {{ Form::close() }}
-
 <br/>
 </div>
 </body>

@@ -4,6 +4,7 @@ namespace App\Flows\SaveFlows;
 
 use Illuminate\Support\Arr;
 use App\Model\TagBookWebAttribute;
+use App\Model\GaElement;
 
 class TagBookSaveFlow extends AbstractSaveFlow
 {
@@ -30,6 +31,26 @@ class TagBookSaveFlow extends AbstractSaveFlow
             );
 
             $webAttributeSaveFlow->save();
+        }
+
+        $gaElements = array_values(Arr::get($this->input, 'ga-element'));
+
+        foreach($gaElements as $key => $element) {
+            $tagElement = new GaElement();
+
+            if (Arr::get($element, 'id')) {
+                $tagElement = GaElement::find(Arr::get($element, 'id'));
+            }
+
+            Arr::set($element, 'order', $key);
+            Arr::set($element, 'tag_book_id', $this->model->id);
+
+            $elementSaveFlow = new GaElementSaveFlow(
+                $tagElement,
+                $element
+            );
+
+            $elementSaveFlow->save();
         }
     }
 }

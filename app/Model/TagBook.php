@@ -19,4 +19,9 @@ class TagBook extends Model
     {
         return $this->hasMany('App\Model\TagBookWebAttribute');
     }
+
+    public function gaElements()
+    {
+        return $this->hasMany('App\Model\GaElement');
+    }
 }

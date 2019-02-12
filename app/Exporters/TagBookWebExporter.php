@@ -26,6 +26,7 @@ class TagBookWebExporter implements WithMultipleSheets
 
         $sheets[] = new CoverExporter($this->id);
         $sheets[] = new TaggingPlanWebExporter($this->id);
+        $sheets[] = new GaElementExporter($this->id);
 
         return $sheets;
     }

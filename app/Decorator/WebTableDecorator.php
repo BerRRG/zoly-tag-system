@@ -45,6 +45,12 @@ class WebTableDecorator extends AbstractDecorator
 
             $cellRange = sprintf('A%s:Q%s', $range, $range);
 
+            $this->event->sheet->getDelegate()->getStyle($cellRange)->getFont()
+                ->setBold(true);
+            $this->event->sheet->getDelegate()->getStyle($cellRange)->getFont()
+                ->setSize(14);
+            $this->event->sheet->getDelegate()->getStyle($cellRange)->getFont()
+                ->setName('Arial');
             $this->event->sheet->getDelegate()->getStyle($cellRange)->getFill()
                 ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
                 ->getStartColor()->setARGB('d3d3d3');
