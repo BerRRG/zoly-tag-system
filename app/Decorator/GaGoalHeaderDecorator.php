@@ -2,13 +2,13 @@
 
 namespace App\Decorator;
 
-class GaElementHeaderDecorator extends AbstractDecorator
+class GaGoalHeaderDecorator extends AbstractDecorator
 {
     public function decorate()
     {
         $columnDimension = $this->event->sheet->getDelegate()->getColumnDimensions('A');
 
-        $cellRange = 'A1:H1';
+        $cellRange = 'A1:F1';
         $this->event->sheet->getDelegate()->getStyle($cellRange)->getFill()
             ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
             ->getStartColor()->setARGB('201351');
@@ -29,10 +29,5 @@ class GaElementHeaderDecorator extends AbstractDecorator
             ->getAllBorders()->setBorderStyle('thin');
         $this->event->sheet->getDelegate()->getStyle($cellRange)->getBorders()
             ->getAllBorders()->getColor()->setARGB('FFFFFF');
-
-        $cellRange = 'H1:H1';
-        $this->event->sheet->getDelegate()->getStyle($cellRange)->getFill()
-            ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
-            ->getStartColor()->setARGB('FF0000');
     }
 }

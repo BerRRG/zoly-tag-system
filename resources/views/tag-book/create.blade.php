@@ -324,7 +324,105 @@
           </div>
       </div>
     </div>
+    <h1>GA Goals</h1>
+    <div class="repeater-default">
+      <div data-repeater-list="ga-goals" class="drag">
+        <div data-repeater-item="">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('ga_goal[0][ga_index]', 'GA-Index ID') }}
+                        {{ form::text('ga_goal[0][ga_index]', input::old('ga_goal[0][ga_index]'), array('class' => 'form-control')) }}
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('ga_goal[0][name]', 'Name') }}
+                        {{ form::text('ga_goal[0][name]', input::old('ga_goal[0][name]'), array('class' => 'form-control')) }}
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('ga_goal[0][description]', 'Description') }}
+                        {{ form::text('ga_goal[0][description]', input::old('ga_goal[0][descripton]'), array('class' => 'form-control')) }}
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('ga_goal[0][type]', 'Type') }}
+                        {{ form::text('ga_goal[0][type]', input::old('ga_goal[0][type]'), array('class' => 'form-control')) }}
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('ga_goal[0][condition_rules]', 'Condition Rules') }}
+                        {{ form::text('ga_goal[0][condition_rules]', input::old('ga_goal[0][condition_rules]'), array('class' => 'form-control')) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('ga_goal[0][status]', 'Status') }}
+                        {{ form::text('ga_goal[0][status]', input::old('ga_goal[0][status]'), array('class' => 'form-control')) }}
+                    </div>
+                </div>
 
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <span data-repeater-delete="" class="btn btn-danger btn-sm">
+                    <span class="glyphicon glyphicon-remove"></span> Delete
+                    </span>
+                </div>
+            </div>
+        </div>
+      </div>
+      </br>
+      <div class="row form-group">
+          <div class="col-sm-11">
+          <span data-repeater-create="" class="btn btn-info btn-md">
+              <span class="glyphicon glyphicon-plus"></span> Add
+          </span>
+          </div>
+      </div>
+    </div>
+    <h1>References</h1>
+    <div class="repeater-default">
+      <div data-repeater-list="references" class="drag">
+        <div data-repeater-item="">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('references[0][name]', 'Name') }}
+                        {{ form::text('references[0][name]', input::old('references[0][name]'), array('class' => 'form-control')) }}
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('references[0][url]', 'Url') }}
+                        {{ form::text('references[0][url]', input::old('references[0][url]'), array('class' => 'form-control')) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <span data-repeater-delete="" class="btn btn-danger btn-sm">
+                    <span class="glyphicon glyphicon-remove"></span> Delete
+                    </span>
+                </div>
+            </div>
+        </div>
+      </div>
+      </br>
+      <div class="row form-group">
+          <div class="col-sm-11">
+          <span data-repeater-create="" class="btn btn-info btn-md">
+              <span class="glyphicon glyphicon-plus"></span> Add
+          </span>
+          </div>
+      </div>
+    </div>
 
 
 

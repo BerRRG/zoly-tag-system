@@ -253,60 +253,60 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group">
-                            {{ form::label('ga_element[0][type]', 'Type') }}
-                            {{ form::text('ga_element[0][type]', input::old('ga_element[0][type]') ? input::old('ga_element[0][type]') :$gaElement->type, array('class' => 'form-control')) }}
+                            {{ form::label('ga_element['.$key.'][type]', 'Type') }}
+                            {{ form::text('ga_element['.$key.'][type]', input::old('ga_element['.$key.'][type]') ? input::old('ga_element['.$key.'][type]') :$gaElement->type, array('class' => 'form-control')) }}
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
-                            {{ form::label('ga_element[0][index]', 'Index') }}
-                            {{ form::text('ga_element[0][index]', input::old('ga_element[0][index]') ? input::old('ga_element[0][index]') : $gaElement->index, array('class' => 'form-control')) }}
+                            {{ form::label('ga_element['.$key.'][index]', 'Index') }}
+                            {{ form::text('ga_element['.$key.'][index]', input::old('ga_element['.$key.'][index]') ? input::old('ga_element['.$key.'][index]') : $gaElement->index, array('class' => 'form-control')) }}
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
-                            {{ form::label('ga_element[0][name]', 'Name') }}
-                            {{ form::text('ga_element[0][name]', input::old('ga_element[0][name]') ? input::old('ga_element[0][name]') : $gaElement->name, array('class' => 'form-control')) }}
+                            {{ form::label('ga_element['.$key.'][name]', 'Name') }}
+                            {{ form::text('ga_element['.$key.'][name]', input::old('ga_element['.$key.'][name]') ? input::old('ga_element['.$key.'][name]') : $gaElement->name, array('class' => 'form-control')) }}
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
-                            {{ form::label('ga_element[0][description]', 'Description') }}
-                            {{ form::text('ga_element[0][description]', input::old('ga_element[0][description]') ? input::old('ga_element[0][description]') : $gaElement->description, array('class' => 'form-control')) }}
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            {{ form::label('ga_element[0][format_example]', 'Format / Example') }}
-                            {{ form::text('ga_element[0][format_example]', input::old('ga_element[0][format_example]') ? input::old('ga_element[0][format_example]') : $gaElement->format_example, array('class' => 'form-control')) }}
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            {{ form::label('ga_element[0][scope]', 'Scope') }}
-                            {{ form::text('ga_element[0][scope]', input::old('ga_element[0][scope]') ? input::old('ga_element[0][scope]') : $gaElement->scope, array('class' => 'form-control')) }}
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            {{ form::label('ga_element[0][status]', 'Status') }}
-                            {{ form::text('ga_element[0][status]', input::old('ga_element[0][status]') ? input::old('ga_element[0][status]') : $gaElement->status, array('class' => 'form-control')) }}
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            {{ form::label('ga_element[0][comment]', 'Comment') }}
-                            {{ form::text('ga_element[0][comment]', input::old('ga_element[0][comment]') ? input::old('ga_element[0][comment]') : $gaElement->comment, array('class' => 'form-control')) }}
+                            {{ form::label('ga_element['.$key.'][description]', 'Description') }}
+                            {{ form::text('ga_element['.$key.'][description]', input::old('ga_element['.$key.'][description]') ? input::old('ga_element['.$key.'][description]') : $gaElement->description, array('class' => 'form-control')) }}
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group">
-                            {{ form::label('ga_element[0][section]', 'Section') }}
-                            {{ form::text('ga_element[0][section]', input::old('ga_element[0][section]') ? input::old('ga_element[0][section]') : $gaElement->section, array('class' => 'form-control')) }}
+                            {{ form::label('ga_element['.$key.'][format_example]', 'Format / Example') }}
+                            {{ form::text('ga_element['.$key.'][format_example]', input::old('ga_element['.$key.'][format_example]') ? input::old('ga_element['.$key.'][format_example]') : $gaElement->format_example, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('ga_element['.$key.'][scope]', 'Scope') }}
+                            {{ form::text('ga_element['.$key.'][scope]', input::old('ga_element['.$key.'][scope]') ? input::old('ga_element['.$key.'][scope]') : $gaElement->scope, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('ga_element['.$key.'][status]', 'Status') }}
+                            {{ form::text('ga_element['.$key.'][status]', input::old('ga_element['.$key.'][status]') ? input::old('ga_element['.$key.'][status]') : $gaElement->status, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('ga_element['.$key.'][comment]', 'Comment') }}
+                            {{ form::text('ga_element['.$key.'][comment]', input::old('ga_element['.$key.'][comment]') ? input::old('ga_element['.$key.'][comment]') : $gaElement->comment, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('ga_element['.$key.'][section]', 'Section') }}
+                            {{ form::text('ga_element['.$key.'][section]', input::old('ga_element['.$key.'][section]') ? input::old('ga_element['.$key.'][section]') : $gaElement->section, array('class' => 'form-control')) }}
                         </div>
                     </div>
                 </div>
@@ -330,6 +330,113 @@
           </div>
       </div>
     </div>
+
+    <h1>GA Goals</h1>
+    <div class="repeater-default">
+      <div data-repeater-list="ga-goals" class="drag">
+          @foreach($gaGoals as $key => $gaGoal)
+            <div data-repeater-item="">
+            <input type="hidden" value="{{$gaGoal->id}}" name="attribute[{{$key}}][id]">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('ga_goal['.$key.'][ga_index]', 'GA-Index ID') }}
+                            {{ form::text('ga_goal['.$key.'][ga_index]', input::old('ga_goal['.$key.'][ga_index]') ? input::old('ga_goal['.$key.'][ga_index]') : $gaGoal->ga_index, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('ga_goal['.$key.'][name]', 'Name') }}
+                            {{ form::text('ga_goal['.$key.'][name]', input::old('ga_goal['.$key.'][name]') ? input::old('ga_goal['.$key.'][name]') : $gaGoal->name, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('ga_goal['.$key.'][description]', 'Description') }}
+                            {{ form::text('ga_goal['.$key.'][description]', input::old('ga_goal['.$key.'][descripton]') ? input::old('ga_goal['.$key.'][descripton]') : $gaGoal->description, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('ga_goal['.$key.'][type]', 'Type') }}
+                            {{ form::text('ga_goal['.$key.'][type]', input::old('ga_goal['.$key.'][type]') ? input::old('ga_goal['.$key.'][type]') : $gaGoal->type, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('ga_goal['.$key.'][condition_rules]', 'Condition Rules') }}
+                            {{ form::text('ga_goal['.$key.'][condition_rules]', input::old('ga_goal['.$key.'][condition_rules]') ? input::old('ga_goal['.$key.'][condition_rules]') : $gaGoal->condition_rules, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('ga_goal['.$key.'][status]', 'Status') }}
+                            {{ form::text('ga_goal['.$key.'][status]', input::old('ga_goal['.$key.'][status]') ? input::old('ga_goal['.$key.'][status]') : $gaGoal->status, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <span data-repeater-delete="" class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-remove"></span> Delete
+                        </span>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+      </div>
+      </br>
+      <div class="row form-group">
+          <div class="col-sm-11">
+          <span data-repeater-create="" class="btn btn-info btn-md">
+              <span class="glyphicon glyphicon-plus"></span> Add
+          </span>
+          </div>
+      </div>
+    </div>
+    <h1>References</h1>
+    <div class="repeater-default">
+      <div data-repeater-list="references" class="drag">
+          @foreach($references as $key => $reference)
+            <div data-repeater-item="">
+                <input type="hidden" value="{{$reference->id}}" name="attribute[{{$key}}][id]">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('references['.$key.'][name]', 'Name') }}
+                            {{ form::text('references['.$key.'][name]', input::old('references['.$key.'][name]') ? input::old('references['.$key.'][name]') : $reference->name, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('references['.$key.'][url]', 'Url') }}
+                            {{ form::text('references['.$key.'][url]', input::old('references['.$key.'][url]') ? input::old('references['.$key.'][url]') : $reference->url, array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <span data-repeater-delete="" class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-remove"></span> Delete
+                        </span>
+                    </div>
+                </div>
+            </div>
+          @endforeach
+      </div>
+      </br>
+      <div class="row form-group">
+          <div class="col-sm-11">
+          <span data-repeater-create="" class="btn btn-info btn-md">
+              <span class="glyphicon glyphicon-plus"></span> Add
+          </span>
+          </div>
+      </div>
+    </div>
+
     {{ Form::submit('Salvar Tag Book', array('class' => 'btn btn-primary buttonCad')) }}
 
 {{ Form::close() }}

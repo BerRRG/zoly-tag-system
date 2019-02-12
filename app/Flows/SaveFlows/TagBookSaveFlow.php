@@ -5,6 +5,8 @@ namespace App\Flows\SaveFlows;
 use Illuminate\Support\Arr;
 use App\Model\TagBookWebAttribute;
 use App\Model\GaElement;
+use App\Model\GaGoal;
+use App\Model\Reference;
 
 class TagBookSaveFlow extends AbstractSaveFlow
 {
@@ -15,42 +17,53 @@ class TagBookSaveFlow extends AbstractSaveFlow
 
         $attributes = array_values(Arr::get($this->input, 'attribute'));
 
-        foreach($attributes as $key => $attribute) {
-            $tagAttribute = new TagBookWebAttribute();
-
-            if (Arr::get($attribute, 'id')) {
-                $tagAttribute = TagBookWebAttribute::find(Arr::get($attribute, 'id'));
-            }
-
-            Arr::set($attribute, 'order', $key);
-            Arr::set($attribute, 'tag_book_id', $this->model->id);
-
-            $webAttributeSaveFlow = new TagBookWebAttributeSaveFlow(
-                $tagAttribute,
-                $attribute
-            );
-
-            $webAttributeSaveFlow->save();
-        }
+        $this->saveRelationHasMany(
+            $attributes,
+            TagBookWebAttribute::class,
+            TagBookWebAttributeSaveFlow::class
+        );
 
         $gaElements = array_values(Arr::get($this->input, 'ga-element'));
 
-        foreach($gaElements as $key => $element) {
-            $tagElement = new GaElement();
+        $this->saveRelationHasMany(
+            $gaElements,
+            GaElement::class,
+            GaElementSaveFlow::class
+        );
 
-            if (Arr::get($element, 'id')) {
-                $tagElement = GaElement::find(Arr::get($element, 'id'));
+        $gaGoals = array_values(Arr::get($this->input, 'ga-goals'));
+        $this->saveRelationHasMany(
+            $gaGoals,
+            GaGoal::class,
+            GaGoalSaveFlow::class
+        );
+
+        $references = array_values(Arr::get($this->input, 'references'));
+        $this->saveRelationHasMany(
+            $references,
+            Reference::class,
+            ReferenceSaveFlow::class
+        );
+    }
+
+    protected function saveRelationHasMany($objects, $modelClass, $modelSaveFlow)
+    {
+        foreach($objects as $key => $object) {
+            $model = new $modelClass();
+
+            if (Arr::get($object, 'id')) {
+                $model = $model::find(Arr::get($object, 'id'));
             }
 
-            Arr::set($element, 'order', $key);
-            Arr::set($element, 'tag_book_id', $this->model->id);
+            Arr::set($object, 'order', $key);
+            Arr::set($object, 'tag_book_id', $this->model->id);
 
-            $elementSaveFlow = new GaElementSaveFlow(
-                $tagElement,
-                $element
+            $modelSaveFlow = new $modelSaveFlow(
+                $model,
+                $object
             );
 
-            $elementSaveFlow->save();
+            $modelSaveFlow->save();
         }
     }
 }

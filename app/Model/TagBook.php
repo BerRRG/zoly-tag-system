@@ -24,4 +24,14 @@ class TagBook extends Model
     {
         return $this->hasMany('App\Model\GaElement');
     }
+
+    public function gaGoals()
+    {
+        return $this->hasMany('App\Model\GaGoal');
+    }
+
+    public function references()
+    {
+        return $this->hasMany('App\Model\Reference');
+    }
 }

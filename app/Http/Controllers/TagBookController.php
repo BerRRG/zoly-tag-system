@@ -71,11 +71,15 @@ class TagBookController extends Controller
         $tagBook = TagBook::find($id);
         $webAttributes = $tagBook->webAttributes()->orderBy('order')->get();
         $gaElements = $tagBook->gaElements()->orderBy('order')->get();
+        $gaGoals = $tagBook->gaGoals()->orderBy('order')->get();
+        $references = $tagBook->references()->orderBy('order')->get();
 
         return View::make('tag-book.edit')
             ->with('webAttributes', $webAttributes)
             ->with('webAttribute', new TagBookWebAttribute())
             ->with('gaElements', $gaElements)
+            ->with('gaGoals', $gaGoals)
+            ->with('references', $references)
             ->with('tagBook', $tagBook);
     }
 
