@@ -17,7 +17,9 @@ class CreateTagBookWebAttributesTable extends Migration
             $table->increments('id');
             $table->string('priority')->nullable();
             $table->string('reference_link_page')->nullable();
-            $table->string('description')->nullable();
+            $table->string('description_when')->nullable();
+            $table->string('description_where')->nullable();
+            $table->string('description_button')->nullable();
             $table->string('data_layer_data_attribute')->nullable();
             $table->enum(
                 'status_implementation_data_layer_data_attribute',

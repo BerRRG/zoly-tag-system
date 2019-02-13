@@ -110,24 +110,34 @@
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    {{ form::label('attribute[0][description]', 'Description') }}
-                    {{ form::text('attribute[0][description]', input::old('attribute[0][description]'), array('class' => 'form-control')) }}
+                    {{ form::label('attribute[0][description_when]', 'Description (Quando)') }}
+                    {{ form::text('attribute[0][description_when]', input::old('attribute[0][description_when]'), array('class' => 'form-control')) }}
                 </div>
             </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    {{ form::label('attribute[0][description_where]', 'Description (Onde)') }}
+                    {{ form::text('attribute[0][description_where]', input::old('attribute[0][description_where]'), array('class' => 'form-control')) }}
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    {{ form::label('attribute[0][description_button]', 'Description(Titulo ou nome do botão/link)') }}
+                    {{ form::text('attribute[0][description_button]', input::old('attribute[0][description_button]'), array('class' => 'form-control')) }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
                     {{ form::label('attribute[0][data_layer_data_attribute]', 'dataLayer ou data-attributes') }}
                     {{ form::text('attribute[0][data_layer_data_attribute]', input::old('attribute[0][data_layer_data_attribute]'), array('class' => 'form-control')) }}
                 </div>
             </div>
-
-            <div class="col-sm-2">
+            <div class="col-sm-3">
                 {{ form::label('attribute[0][status_implemetation_data_layer_data_attribute]', 'Status Implementation dataLayer ou data-attributes', ['class' => ' col-2 text-truncate']) }}
                     {{ form::select('attribute[0][status_implemetation_data_layer_data_attribute]', $webAttribute->implementationStatus, input::old('attribute[0][status_implemetation_data_layer_data_attribute]'), array('class' => 'form-control')) }}
             </div>
-        </div>
-
-        <div class="row">
             <div class="col-sm-2">
                 <div class="form-group">
                     {{ form::label('attribute[0][status_implementation_tag_manager]', 'Status Implementation TagManager') }}
@@ -148,7 +158,9 @@
                     {{ form::select('attribute[0][track_type]', $webAttribute->trackType, input::old('attribute[0][track_type]'), array('class' => 'form-control')) }}
                 </div>
             </div>
+        </div>
 
+        <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
                     {{ form::label('attribute[0][tag_name]', 'Tag Name') }}
@@ -162,9 +174,6 @@
                     {{ form::text('attribute[0][fields_to_set]', input::old('attribute[0][fields_to_set]'), array('class' => 'form-control')) }}
                 </div>
             </div>
-        </div>
-
-        <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
                     {{ form::label('attribute[0][event_category]', 'Event Category') }}
@@ -178,7 +187,9 @@
                     {{ form::text('attribute[0][event_action]', input::old('attribute[0][event_action]'), array('class' => 'form-control')) }}
                 </div>
             </div>
+        </div>
 
+        <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
                     {{ form::label('attribute[0][event_label_var]', 'Event Label/Var') }}
@@ -192,9 +203,6 @@
                     {{ form::text('attribute[0][event_value]', input::old('attribute[0][event_value]'), array('class' => 'form-control')) }}
                 </div>
             </div>
-        </div>
-
-        <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
                     {{ form::label('attribute[0][custom_dimension_metrics]', 'Custom Dimensions & Metrics') }}
@@ -208,7 +216,9 @@
                     {{ form::text('attribute[0][additional]', input::old('attribute[0][additional]'), array('class' => 'form-control')) }}
                 </div>
             </div>
+        </div>
 
+        <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
                     {{ form::label('attribute[0][comments]', 'Comments') }}
@@ -280,16 +290,12 @@
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <div class="form-group">
-                        {{ form::label('ga_element[0][scope]', 'Scope') }}
-                        {{ form::text('ga_element[0][scope]', input::old('ga_element[0][scope]'), array('class' => 'form-control')) }}
-                    </div>
+                    {{ form::label('ga_element[0][scope]', 'Scope', ['class' => ' col-3 text-truncate']) }}
+                    {{ form::select('ga_element[0][scope]', $gaElementModel->scopeStatus, input::old('ga_element[0][scope]'), array('class' => 'form-control')) }}
                 </div>
                 <div class="col-sm-3">
-                    <div class="form-group">
-                        {{ form::label('ga_element[0][status]', 'Status') }}
-                        {{ form::text('ga_element[0][status]', input::old('ga_element[0][status]'), array('class' => 'form-control')) }}
-                    </div>
+                    {{ form::label('ga_element[0][status]', 'Status', ['class' => ' col-3 text-truncate']) }}
+                    {{ form::select('ga_element[0][status]', $gaElementModel->implementationStatus, input::old('ga_element[0][status]'), array('class' => 'form-control')) }}
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
@@ -362,13 +368,11 @@
             </div>
             <div class="row">
                 <div class="col-sm-3">
-                    <div class="form-group">
-                        {{ form::label('ga_goal[0][status]', 'Status') }}
-                        {{ form::text('ga_goal[0][status]', input::old('ga_goal[0][status]'), array('class' => 'form-control')) }}
-                    </div>
+                    {{ form::label('ga_goal[0][status]', 'Status', ['class' => ' col-3 text-truncate']) }}
+                    {{ form::select('ga_goal[0][status]', $gaGoalModel->implementationStatus, input::old('ga_goal[0][status]'), array('class' => 'form-control')) }}
                 </div>
-
             </div>
+            </br>
             <div class="row">
                 <div class="col-sm-2">
                     <span data-repeater-delete="" class="btn btn-danger btn-sm">

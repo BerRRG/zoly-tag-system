@@ -9,7 +9,9 @@ class TagBookWebAttribute extends Model
     protected $fillable = [
         'priority',
         'reference_link_page',
-        'description',
+        'description_when',
+        'description_where',
+        'description_button',
         'data_layer_data_attribute',
         'status_implementation_data_layer_data_attribute',
         'status_implementation_tag_manager',

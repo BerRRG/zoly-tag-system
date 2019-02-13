@@ -110,10 +110,25 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        {{ form::label('attribute['.$key.'][description]', 'Description') }}
-                        {{ form::text('attribute['.$key.'][description]', input::old('attribute['.$key.'][description]') ? input::old('attribute['.$key.'][description]') : $webAttribute->description, array('class' => 'form-control')) }}
+                        {{ form::label('attribute['.$key.'][description_when]', 'Description (Quando)') }}
+                        {{ form::text('attribute['.$key.'][description_when]', input::old('attribute['.$key.'][description_when]') ? input::old('attribute['.$key.'][description_when]') : $webAttribute->description_when, array('class' => 'form-control')) }}
                     </div>
                 </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        {{ form::label('attribute['.$key.'][description_where]', 'Description (Onde)') }}
+                        {{ form::text('attribute['.$key.'][description_where]', input::old('attribute['.$key.'][description_where]') ? input::old('attribute['.$key.'][description_where]') : $webAttribute->description_where, array('class' => 'form-control')) }}
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        {{ form::label('attribute['.$key.'][description_button]', 'Description (Titulo ou nome do botão/link)') }}
+                        {{ form::text('attribute['.$key.'][description_button]', input::old('attribute['.$key.'][description_button]') ? input::old('attribute['.$key.'][description_button]') : $webAttribute->description_button, array('class' => 'form-control')) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
                         {{ form::label('attribute['.$key.'][data_layer_data_attribute]', 'dataLayer ou data-attributes') }}
@@ -121,13 +136,10 @@
                     </div>
                 </div>
 
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     {{ form::label('attribute['.$key.'][status_implemetation_data_layer_data_attribute]', 'Status Implementation dataLayer ou data-attributes', ['class' => ' col-2 text-truncate']) }}
                     {{ form::select('attribute['.$key.'][status_implemetation_data_layer_data_attribute]', $webAttribute->implementationStatus, input::old('attribute['.$key.'][status_implemetation_data_layer_data_attribute]') ? input::old('attribute['.$key.'][status_implemetation_data_layer_data_attribute]') : $webAttribute->status_implementation_data_layer_data_attribute, array('class' => 'form-control')) }}
                 </div>
-            </div>
-
-            <div class="row">
                 <div class="col-sm-2">
                     <div class="form-group">
                         {{ form::label('attribute['.$key.'][status_implementation_tag_manager]', 'Status Implementation TagManager') }}
@@ -148,7 +160,9 @@
                         {{ form::select('attribute['.$key.'][track_type]', $webAttribute->trackType, input::old('attribute['.$key.'][track_type]') ? input::old('attribute['.$key.'][track_type]') : $webAttribute->track_type, array('class' => 'form-control')) }}
                     </div>
                 </div>
+            </div>
 
+            <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
                         {{ form::label('attribute['.$key.'][tag_name]', 'Tag Name') }}
@@ -162,9 +176,6 @@
                         {{ form::text('attribute['.$key.'][fields_to_set]', input::old('attribute['.$key.'][fields_to_set]') ? input::old('attribute['.$key.'][fields_to_set]') : $webAttribute->fields_to_set, array('class' => 'form-control')) }}
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
                         {{ form::label('attribute['.$key.'][event_category]', 'Event Category') }}
@@ -192,9 +203,6 @@
                         {{ form::text('attribute['.$key.'][event_value]', input::old('attribute['.$key.'][event_value]') ? input::old('attribute['.$key.'][event_value]') : $webAttribute->event_value, array('class' => 'form-control')) }}
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
                         {{ form::label('attribute['.$key.'][custom_dimension_metrics]', 'Custom Dimensions & Metrics') }}
@@ -208,7 +216,9 @@
                         {{ form::text('attribute['.$key.'][additional]', input::old('attribute['.$key.'][additional]') ? input::old('attribute['.$key.'][additional]') : $webAttribute->additional, array('class' => 'form-control')) }}
                     </div>
                 </div>
+            </div>
 
+            <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
                         {{ form::label('attribute['.$key.'][comments]', 'Comments') }}
@@ -284,16 +294,12 @@
                         </div>
                     </div>
                     <div class="col-sm-3">
-                        <div class="form-group">
-                            {{ form::label('ga_element['.$key.'][scope]', 'Scope') }}
-                            {{ form::text('ga_element['.$key.'][scope]', input::old('ga_element['.$key.'][scope]') ? input::old('ga_element['.$key.'][scope]') : $gaElement->scope, array('class' => 'form-control')) }}
-                        </div>
+                        {{ form::label('ga_element[0][scope]', 'Scope', ['class' => ' col-3 text-truncate']) }}
+                        {{ form::select('ga_element[0][scope]', $gaElementModel->scopeStatus, input::old('ga_element[0][scope]') ? input::old('ga_element[0][scope]') : $gaElement->scope, array('class' => 'form-control')) }}
                     </div>
                     <div class="col-sm-3">
-                        <div class="form-group">
-                            {{ form::label('ga_element['.$key.'][status]', 'Status') }}
-                            {{ form::text('ga_element['.$key.'][status]', input::old('ga_element['.$key.'][status]') ? input::old('ga_element['.$key.'][status]') : $gaElement->status, array('class' => 'form-control')) }}
-                        </div>
+                        {{ form::label('ga_element[0][status]', 'Status', ['class' => ' col-3 text-truncate']) }}
+                        {{ form::select('ga_element[0][status]', $gaElementModel->implementationStatus, input::old('ga_element[0][status]') ? input::old('ga_element[0][status]') : $gaElement->status, array('class' => 'form-control')) }}
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
@@ -371,12 +377,9 @@
                         </div>
                     </div>
                     <div class="col-sm-3">
-                        <div class="form-group">
-                            {{ form::label('ga_goal['.$key.'][status]', 'Status') }}
-                            {{ form::text('ga_goal['.$key.'][status]', input::old('ga_goal['.$key.'][status]') ? input::old('ga_goal['.$key.'][status]') : $gaGoal->status, array('class' => 'form-control')) }}
-                        </div>
+                        {{ form::label('ga_goal[0][status]', 'Status', ['class' => ' col-3 text-truncate']) }}
+                        {{ form::select('ga_goal[0][status]', $gaGoalModel->implementationStatus, input::old('ga_goal[0][status]') ? input::old('ga_goal[0][status]') : $gaGoal->status, array('class' => 'form-control')) }}
                     </div>
-
                 </div>
                 <div class="row">
                     <div class="col-sm-2">

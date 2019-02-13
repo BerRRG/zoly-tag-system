@@ -20,8 +20,28 @@ class CreateGaElementsTable extends Migration
             $table->string('name')->nullable();
             $table->string('description')->nullable();
             $table->string('format_example')->nullable();
-            $table->string('scope')->nullable();
-            $table->string('status')->nullable();
+            $table->enum(
+                'scope',
+                [
+                    '-',
+                    'hit',
+                    'session',
+                    'user',
+                    'e_commerce',
+                ]
+            )->default('-');
+            $table->enum(
+                'status',
+                [
+                    'done',
+                    'to_do_tagging',
+                    'to_do_config',
+                    'validate',
+                    'adjust',
+                    'revalidate',
+                    'not_apply',
+                ]
+            )->default('done');
             $table->string('comment')->nullable();
             $table->string('section')->nullable();
             $table->integer('order')->nullable();

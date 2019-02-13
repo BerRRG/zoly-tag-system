@@ -10,11 +10,14 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exporters\Documentation\DocumentationExporter;
 use App\Exporters\TagBookWebExporter;
 use App\Flows\SaveFlows\TagBookSaveFlow;
 use App\Http\Controllers\Controller;
 use App\Services\Google\GoogleDocClient;
 use App\Model\TagBook;
+use App\Model\GaElement;
+use App\Model\GaGoal;
 use App\Model\TagBookWebAttribute;
 
 class TagBookController extends Controller
@@ -30,6 +33,8 @@ class TagBookController extends Controller
     public function create()
     {
         return View::make('tag-book.create')
+            ->with('gaElementModel', new GaElement())
+            ->with('gaGoalModel', new GaGoal())
             ->with('webAttribute', new TagBookWebAttribute());
     }
 
@@ -77,6 +82,8 @@ class TagBookController extends Controller
         return View::make('tag-book.edit')
             ->with('webAttributes', $webAttributes)
             ->with('webAttribute', new TagBookWebAttribute())
+            ->with('gaElementModel', new GaElement())
+            ->with('gaGoalModel', new GaGoal())
             ->with('gaElements', $gaElements)
             ->with('gaGoals', $gaGoals)
             ->with('references', $references)
@@ -140,6 +147,11 @@ class TagBookController extends Controller
             'uploadType' => 'multipart',
             'fields' => 'id'
         ]);
+
+        /*
+        $documentationExporter = new DocumentationExporter($id);
+        $documentationExporter->export();
+         */
 
         return Redirect::to('tag-books/');
     }

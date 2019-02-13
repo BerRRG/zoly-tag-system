@@ -20,7 +20,18 @@ class CreateGaGoalsTable extends Migration
             $table->string('description')->nullable();
             $table->string('type')->nullable();
             $table->string('condition_rules')->nullable();
-            $table->string('status')->nullable();
+            $table->enum(
+                'status',
+                [
+                    'done',
+                    'to_do_tagging',
+                    'to_do_config',
+                    'validate',
+                    'adjust',
+                    'revalidate',
+                    'not_apply',
+                ]
+            )->default('done');
             $table->integer('order')->nullable();
             $table->integer('tag_book_id')->unsigned()->nullable();
             $table->timestamps();

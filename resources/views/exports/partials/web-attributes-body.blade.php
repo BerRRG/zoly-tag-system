@@ -1,7 +1,13 @@
 <tr>
     <td>{{ $attribute->priority }}</td>
     <td>{{ $attribute->reference_link_page }}</td>
-    <td>{{ $attribute->description }}</td>
+    <td style="wrap-text: true">
+        <b>Quando:</b> {{ $attribute->description_when }}
+        <br />
+        <b>Onde:</b> {{ $attribute->description_where }}
+        <br />
+        <b>Título ou nome do botão/link:</b> {{ $attribute->description_button }}
+    </td>
     <td>{{ $attribute->data_layer_data_attribute }}</td>
     <td>{{ $attribute->status_implementation_data_layer_data_attribute }}</td>
     <td>{{ $attribute->status_implementation_tag_manager }}</td>
