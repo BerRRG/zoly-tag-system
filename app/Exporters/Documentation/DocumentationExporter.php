@@ -21,12 +21,10 @@ class DocumentationExporter
         $attributes = $tagBook->webAttributes()->get();
 
         Storage::put(
-            'testdoc',
+            'readme.md',
             View::make('exports.documentation.default-documentation')
                 ->with('tagBook', $tagBook)
                 ->with('attributes', $attributes)
         );
-
-        dd('aaa');
     }
 }
