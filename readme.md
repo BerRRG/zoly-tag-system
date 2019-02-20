@@ -52,110 +52,110 @@ Caso a informação solicitada não esteja disponível retornar: 'nao_disponivel
 
 ---
 
-            ### Enhanced E-commerce
-            
-    **Na visualização de um banner**<br />
+### Enhanced E-commerce
 
-    - ** Onde:** Na home
-    
-    ```html
-    <!-- Use se o elemento for um link -->
-    <a href='#' class='gtm-link-event'
-       data-gtm-event-category='tng'
-       data-gtm-event-action='promotionImpression'
-       data-gtm-event-label='enhanced-ecommerce'
-    >Link</a>
+**Na visualização de um banner**<br />
 
-    <!-- Use se o elemento não for um link -->
-    <i class='gtm-element-event'
-       data-gtm-event-category='tng'
-       data-gtm-event-action='promotionImpression'
-       data-gtm-event-label=''
-    >Botão</i>
-    ```
+- ** Onde:** Na home
 
-            | Variável        | Exemplo                               | Descrição                         |
-        | :-------------- | :------------------------------------ | :-------------------------------- |
-                | [[variavel]] | exemplo | aaaaaaaaa |
-        <br />
+```html
+<!-- Use se o elemento for um link -->
+<a href='#' class='gtm-link-event'
+data-gtm-event-category='tng'
+data-gtm-event-action='promotionImpression'
+data-gtm-event-label='enhanced-ecommerce'
+>Link</a>
 
-    
-    **No clique de qualquer banner**<br />
+<!-- Use se o elemento não for um link -->
+<i class='gtm-element-event'
+data-gtm-event-category='tng'
+data-gtm-event-action='promotionImpression'
+data-gtm-event-label=''
+>Botão</i>
+```
 
-    - ** Onde:** Na home
-    
-    ```html
-    <!-- Use se o elemento for um link -->
-    <a href='#' class='gtm-link-event'
-       data-gtm-event-category='tng'
-       data-gtm-event-action='promotionClick'
-       data-gtm-event-label='enhanced-ecommerce'
-    >Link</a>
+| Variável        | Exemplo                               | Descrição                         |
+| :-------------- | :------------------------------------ | :-------------------------------- |
+| [[variavel]] | exemplo | aaaaaaaaa |
+<br />
 
-    <!-- Use se o elemento não for um link -->
-    <i class='gtm-element-event'
-       data-gtm-event-category='tng'
-       data-gtm-event-action='promotionClick'
-       data-gtm-event-label=''
-    >Botão</i>
-    ```
 
-            | Variável        | Exemplo                               | Descrição                         |
-        | :-------------- | :------------------------------------ | :-------------------------------- |
-                | [[variavel]] | exemplo | aaaaaaaaa |
-        <br />
+**No clique de qualquer banner**<br />
 
-    
-    **Na remoção de um produto dentro do carrinho**<br />
+- ** Onde:** Na home
 
-    - ** Onde:** Após o clique no ícone da Lixeira dentro da Sacola de compras, e nos botões para remover os produtos do Carrinho de compras
-            - ** Titulo ou nome do botão/link:** &quot;Remover Item&quot;, &quot;Limpar Carrinho&quot;
-    
-    ```html
-    <!-- Use se o elemento for um link -->
-    <a href='#' class='gtm-link-event'
-       data-gtm-event-category='tng'
-       data-gtm-event-action='removeFromCart'
-       data-gtm-event-label='enhanced-ecommerce'
-    >Link</a>
+```html
+<!-- Use se o elemento for um link -->
+<a href='#' class='gtm-link-event'
+data-gtm-event-category='tng'
+data-gtm-event-action='promotionClick'
+data-gtm-event-label='enhanced-ecommerce'
+>Link</a>
 
-    <!-- Use se o elemento não for um link -->
-    <i class='gtm-element-event'
-       data-gtm-event-category='tng'
-       data-gtm-event-action='removeFromCart'
-       data-gtm-event-label=''
-    >Botão</i>
-    ```
+<!-- Use se o elemento não for um link -->
+<i class='gtm-element-event'
+data-gtm-event-category='tng'
+data-gtm-event-action='promotionClick'
+data-gtm-event-label=''
+>Botão</i>
+```
 
-            | Variável        | Exemplo                               | Descrição                         |
-        | :-------------- | :------------------------------------ | :-------------------------------- |
-            <br />
+| Variável        | Exemplo                               | Descrição                         |
+| :-------------- | :------------------------------------ | :-------------------------------- |
+| [[variavel]] | exemplo | aaaaaaaaa |
+<br />
 
-    
-    ****<br />
 
-    - ** Onde:** 
-    
-    ```html
-    <!-- Use se o elemento for um link -->
-    <a href='#' class='gtm-link-event'
-       data-gtm-event-category=''
-       data-gtm-event-action=''
-       data-gtm-event-label=''
-    >Link</a>
+**Na remoção de um produto dentro do carrinho**<br />
 
-    <!-- Use se o elemento não for um link -->
-    <i class='gtm-element-event'
-       data-gtm-event-category=''
-       data-gtm-event-action=''
-       data-gtm-event-label=''
-    >Botão</i>
-    ```
+- ** Onde:** Após o clique no ícone da Lixeira dentro da Sacola de compras, e nos botões para remover os produtos do Carrinho de compras
+- ** Titulo ou nome do botão/link:** &quot;Remover Item&quot;, &quot;Limpar Carrinho&quot;
 
-            | Variável        | Exemplo                               | Descrição                         |
-        | :-------------- | :------------------------------------ | :-------------------------------- |
-                | [[variavel]] | exemplo | aaaaaaaaa |
-        <br />
+```html
+<!-- Use se o elemento for um link -->
+<a href='#' class='gtm-link-event'
+data-gtm-event-category='tng'
+data-gtm-event-action='removeFromCart'
+data-gtm-event-label='enhanced-ecommerce'
+>Link</a>
+
+<!-- Use se o elemento não for um link -->
+<i class='gtm-element-event'
+data-gtm-event-category='tng'
+data-gtm-event-action='removeFromCart'
+data-gtm-event-label=''
+>Botão</i>
+```
+
+| Variável        | Exemplo                               | Descrição                         |
+| :-------------- | :------------------------------------ | :-------------------------------- |
+<br />
+
+
+****<br />
+
+- ** Onde:** 
+
+```html
+<!-- Use se o elemento for um link -->
+<a href='#' class='gtm-link-event'
+data-gtm-event-category=''
+data-gtm-event-action=''
+data-gtm-event-label=''
+>Link</a>
+
+<!-- Use se o elemento não for um link -->
+<i class='gtm-element-event'
+data-gtm-event-category=''
+data-gtm-event-action=''
+data-gtm-event-label=''
+>Botão</i>
+```
+
+| Variável        | Exemplo                               | Descrição                         |
+| :-------------- | :------------------------------------ | :-------------------------------- |
+| [[variavel]] | exemplo | aaaaaaaaa |
+<br />
 
 
 <br />
