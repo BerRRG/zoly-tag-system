@@ -15,6 +15,9 @@
     window.onload = function() {
         var repeater = $('.repeater-default').repeater({
             initval: 1,
+            repeaters: [{
+                selector: '.inner-repeater'
+            }]
         });
 
         jQuery(".drag").sortable({
@@ -218,21 +221,64 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="form-group">
-                    {{ form::label('attribute[0][comments]', 'Comments') }}
-                    {{ form::text('attribute[0][comments]', input::old('attribute[0][comments]'), array('class' => 'form-control')) }}
-                </div>
-            </div>
-
+        <h2>Comentarios</h2>
+        <div class="inner-repeater">
+          <div data-repeater-list="attribute-comments" class="drag">
+            <div data-repeater-item="">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('attribute[0][comments][0][variable]', 'Variável') }}
+                            {{ form::text('attribute[0][comments][0][variable]', input::old('attribute[0][comments][0][variable]'), array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('attribute[0][comments][0][example]', 'Exemplo') }}
+                            {{ form::text('attribute[0][comments][0][example]', input::old('attribute[0][comments][0][example]'), array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('attribute[0][comments][0][description]', 'Descrição') }}
+                            {{ form::text('attribute[0][comments][0][description]', input::old('attribute[0][comments][0][description]'), array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('attribute[0][comments][0][note]', 'Observação') }}
+                            {{ form::text('attribute[0][comments][0][note]', input::old('attribute[0][comments][0][note]'), array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+               </div>
+               <div class="row">
+                    <div class="col-sm-2">
+                        <span data-repeater-delete="" class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-remove"></span> Delete
+                        </span>
+                    </div>
+               </div>
+           </div>
+         </div>
+         <hr>
+        <div class="row form-group">
+          <div class="col-sm-11">
+          <span data-repeater-create="" class="btn btn-info btn-md">
+              <span class="glyphicon glyphicon-plus"></span> Add
+          </span>
+          </div>
+        </div>
+       </div>
+       <h2>Seção</h2>
+       <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
                     {{ form::label('attribute[0][section]', 'Section') }}
                     {{ form::text('attribute[0][section]', input::old('attribute[0][Section]'), array('class' => 'form-control')) }}
                 </div>
             </div>
-
+        </div>
+        <div class="row">
             <div class="col-sm-2">
                 <span data-repeater-delete="" class="btn btn-danger btn-sm">
                 <span class="glyphicon glyphicon-remove"></span> Delete
@@ -242,7 +288,6 @@
         <hr>
         </div>
         </div>
-
         <div class="row form-group">
             <div class="col-sm-11">
             <span data-repeater-create="" class="btn btn-info btn-md">
@@ -252,6 +297,7 @@
         </div>
         </div>
     </div>
+    <hr>
     <h1>GA Elements</h1>
     <div class="repeater-default">
       <div data-repeater-list="ga-element" class="drag">
