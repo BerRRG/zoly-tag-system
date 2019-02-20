@@ -20,7 +20,8 @@ class TagBookSaveFlow extends AbstractSaveFlow
         $this->saveRelationHasMany(
             $attributes,
             TagBookWebAttribute::class,
-            TagBookWebAttributeSaveFlow::class
+            TagBookWebAttributeSaveFlow::class,
+            'tag_book_id'
         );
 
         $gaElements = array_values(Arr::get($this->input, 'ga-element'));
@@ -28,42 +29,24 @@ class TagBookSaveFlow extends AbstractSaveFlow
         $this->saveRelationHasMany(
             $gaElements,
             GaElement::class,
-            GaElementSaveFlow::class
+            GaElementSaveFlow::class,
+            'tag_book_id'
         );
 
         $gaGoals = array_values(Arr::get($this->input, 'ga-goals'));
         $this->saveRelationHasMany(
             $gaGoals,
             GaGoal::class,
-            GaGoalSaveFlow::class
+            GaGoalSaveFlow::class,
+            'tag_book_id'
         );
 
         $references = array_values(Arr::get($this->input, 'references'));
         $this->saveRelationHasMany(
             $references,
             Reference::class,
-            ReferenceSaveFlow::class
+            ReferenceSaveFlow::class,
+            'tag_book_id'
         );
-    }
-
-    protected function saveRelationHasMany($objects, $modelClass, $modelSaveFlow)
-    {
-        foreach($objects as $key => $object) {
-            $model = new $modelClass();
-
-            if (Arr::get($object, 'id')) {
-                $model = $model::find(Arr::get($object, 'id'));
-            }
-
-            Arr::set($object, 'order', $key);
-            Arr::set($object, 'tag_book_id', $this->model->id);
-
-            $modelSaveFlow = new $modelSaveFlow(
-                $model,
-                $object
-            );
-
-            $modelSaveFlow->save();
-        }
     }
 }
