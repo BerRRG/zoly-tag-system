@@ -1,69 +1,184 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+![Zoly](http://lucida-brasil.github.io/public/Images/zoly-logo.png)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+> Área - Digital Analytics<br />
+> Documento de Especificação Técnica
 
-## About Laravel
+<br />
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+## Implementação da Camada de dados
+Última atualização: 13/02/2019 <br />
+Em caso de dúvidas, entrar em contato com: [digitalanalytics@zoly.com.br](mailto:@zoly.com.br)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<br />
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+## Objetivo
 
-## Learning Laravel
+Este documento tem como objetivo instruir a implementação da camada de dados para utilização de recursos do enhanced ecommerce referentes ao ambiente de [CVC](https://www.cvc.com.br/).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+<br />
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+## Overview e Descrições Técnicas
 
-## Laravel Sponsors
+### Camada de dados (DataLayer)
+> É um array de objetos javascript utilizado pelo Google Tag Manager para receber em seus atributos, dados importantes do site.
+Para implementar o dataLayer no site, o desenvolvedor pode utilizar formas diferentes para preencher os dados. Essas formas são dependentes da ação estabelecida na documentação e também do nível da interação.
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+**Instalação**<br />
+Inserir a camada de dados antes do snippet de instalação do Google Tag Manager. Exemplo:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
+```html
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    'atributo1': 'valor1',
+    'atributo2': 'valor2'
+  });
+</script>
+```
 
-## Contributing
+## Implementação
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+A documentação foi descrita para algumas áreas especificas do ambiente [TNG]().
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Especificações Globais:
 
-## License
+**Itens Gerais:**<br />
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Todas as informações entre colchetes `[[  ]]` são variáveis dinâmicas que devem ser preenchidas com seus respectivos valores;<br />
+Todos os valores enviados ao Google Analytics devem estar sanitizados, ou seja, sem espaços, acentuação ou caracteres especiais;<br />
+Caso a informação solicitada não esteja disponível retornar: 'nao_disponivel'.
+
+---
+
+            ### Enhanced E-commerce
+            
+    **Na visualização de um banner**<br />
+
+    - ** Onde:** Na home
+    
+    ```html
+    <!-- Use se o elemento for um link -->
+    <a href='#' class='gtm-link-event'
+       data-gtm-event-category='tng'
+       data-gtm-event-action='promotionImpression'
+       data-gtm-event-label='enhanced-ecommerce'
+    >Link</a>
+
+    <!-- Use se o elemento não for um link -->
+    <i class='gtm-element-event'
+       data-gtm-event-category='tng'
+       data-gtm-event-action='promotionImpression'
+       data-gtm-event-label=''
+    >Botão</i>
+    ```
+
+            | Variável        | Exemplo                               | Descrição                         |
+        | :-------------- | :------------------------------------ | :-------------------------------- |
+                | [[variavel]] | exemplo | aaaaaaaaa |
+        <br />
+
+    
+    **No clique de qualquer banner**<br />
+
+    - ** Onde:** Na home
+    
+    ```html
+    <!-- Use se o elemento for um link -->
+    <a href='#' class='gtm-link-event'
+       data-gtm-event-category='tng'
+       data-gtm-event-action='promotionClick'
+       data-gtm-event-label='enhanced-ecommerce'
+    >Link</a>
+
+    <!-- Use se o elemento não for um link -->
+    <i class='gtm-element-event'
+       data-gtm-event-category='tng'
+       data-gtm-event-action='promotionClick'
+       data-gtm-event-label=''
+    >Botão</i>
+    ```
+
+            | Variável        | Exemplo                               | Descrição                         |
+        | :-------------- | :------------------------------------ | :-------------------------------- |
+                | [[variavel]] | exemplo | aaaaaaaaa |
+        <br />
+
+    
+    **Na remoção de um produto dentro do carrinho**<br />
+
+    - ** Onde:** Após o clique no ícone da Lixeira dentro da Sacola de compras, e nos botões para remover os produtos do Carrinho de compras
+            - ** Titulo ou nome do botão/link:** &quot;Remover Item&quot;, &quot;Limpar Carrinho&quot;
+    
+    ```html
+    <!-- Use se o elemento for um link -->
+    <a href='#' class='gtm-link-event'
+       data-gtm-event-category='tng'
+       data-gtm-event-action='removeFromCart'
+       data-gtm-event-label='enhanced-ecommerce'
+    >Link</a>
+
+    <!-- Use se o elemento não for um link -->
+    <i class='gtm-element-event'
+       data-gtm-event-category='tng'
+       data-gtm-event-action='removeFromCart'
+       data-gtm-event-label=''
+    >Botão</i>
+    ```
+
+            | Variável        | Exemplo                               | Descrição                         |
+        | :-------------- | :------------------------------------ | :-------------------------------- |
+            <br />
+
+    
+    ****<br />
+
+    - ** Onde:** 
+    
+    ```html
+    <!-- Use se o elemento for um link -->
+    <a href='#' class='gtm-link-event'
+       data-gtm-event-category=''
+       data-gtm-event-action=''
+       data-gtm-event-label=''
+    >Link</a>
+
+    <!-- Use se o elemento não for um link -->
+    <i class='gtm-element-event'
+       data-gtm-event-category=''
+       data-gtm-event-action=''
+       data-gtm-event-label=''
+    >Botão</i>
+    ```
+
+            | Variável        | Exemplo                               | Descrição                         |
+        | :-------------- | :------------------------------------ | :-------------------------------- |
+                | [[variavel]] | exemplo | aaaaaaaaa |
+        <br />
+
+
+<br />
+
+---
+
+## Considerações Finais
+
+> Recomendações do Google:
+> 1. [Enhanced Ecommerce - Product Impressions](https://developers.google.com/tag-manager/enhanced-ecommerce#product-impressions)
+> 2. [Enhanced Ecommerce - Product Clicks](https://developers.google.com/tag-manager/enhanced-ecommerce#product-clicks)
+> 3. [Enhanced Ecommerce - Product Detail](https://developers.google.com/tag-manager/enhanced-ecommerce#details)
+> 4. [Enhanced Ecommerce - AddToCart / Remove From Cart](https://developers.google.com/tag-manager/enhanced-ecommerce#cart)
+> 5. [Enhanced Ecommerce - Promotion Impression](https://developers.google.com/tag-manager/enhanced-ecommerce#promo-impressions)
+> 6. [Enhanced Ecommerce - Promotion Click](https://developers.google.com/tag-manager/enhanced-ecommerce#promo-clicks)
+> 7. [Enhanced Ecommerce - Checkout](https://developers.google.com/tag-manager/enhanced-ecommerce#checkout)
+> 8. [Enhanced Ecommerce - Purchase](https://developers.google.com/tag-manager/enhanced-ecommerce#purchases)
+> 9. [Enhanced Ecommerce - Refunds(Reembolso)](https://developers.google.com/tag-manager/enhanced-ecommerce#refunds)
+
+> Em caso de dúvidas, entrar em contato com: [](mailto:@zoly.com.br)
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(event) {
+    document.querySelectorAll('h1 a')[0].style.display = 'none';
+  });
+</script>
