@@ -75,4 +75,9 @@ class TagBookWebAttribute extends Model
     {
         return $this->belongsTo('App\Model\TagBook');
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Model\AttributeComment');
+    }
 }
