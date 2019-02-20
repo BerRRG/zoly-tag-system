@@ -16,6 +16,7 @@ use App\Flows\SaveFlows\TagBookSaveFlow;
 use App\Http\Controllers\Controller;
 use App\Services\Google\GoogleDocClient;
 use App\Model\TagBook;
+use App\Model\AttributeComment;
 use App\Model\GaElement;
 use App\Model\GaGoal;
 use App\Model\TagBookWebAttribute;
@@ -148,11 +149,9 @@ class TagBookController extends Controller
             'fields' => 'id'
         ]);
 
-        /*
         $documentationExporter = new DocumentationExporter($id);
         $documentationExporter->export();
-         */
 
-        return Redirect::to('tag-books/');
+        return response()->download('/var/www/storage/app/readme.md');
     }
 }
