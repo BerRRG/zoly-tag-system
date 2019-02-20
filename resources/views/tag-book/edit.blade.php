@@ -15,6 +15,9 @@
     window.onload = function() {
         var repeater = $('.repeater-default').repeater({
             initval: 1,
+            repeaters: [{
+                selector: '.inner-repeater'
+            }]
         });
 
         jQuery(".drag").sortable({
@@ -218,21 +221,67 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        {{ form::label('attribute['.$key.'][comments]', 'Comments') }}
-                        {{ form::text('attribute['.$key.'][comments]', input::old('attribute['.$key.'][comments]') ? input::old('attribute['.$key.'][comments]') : $webAttribute->comments, array('class' => 'form-control')) }}
-                    </div>
+            @foreach( $webAttribute->comments()->get() as $commentKey => $comment)
+                <h2>Comentarios</h2>
+                <div class="inner-repeater">
+                  <div data-repeater-list="attribute-comments" class="drag">
+                    <div data-repeater-item="">
+                        <input type="hidden" value="{{$comment->id}}" name="attribute[{{$key}}][id]">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    {{ form::label('attribute['.$key.'][comments]['.$commentKey.'][variable]', 'Variável') }}
+                                    {{ form::text('attribute['.$key.'][comments]['.$commentKey.'][variable]', input::old('attribute['.$key.'][comments]['.$commentKey.'][variable]') ? input::old('attribute['.$key.'][comments]['.$commentKey.'][variable]') : $comment->variable, array('class' => 'form-control')) }}
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    {{ form::label('attribute['.$key.'][comments]['.$commentKey.'][example]', 'Exemplo') }}
+                                    {{ form::text('attribute['.$key.'][comments]['.$commentKey.'][example]', input::old('attribute['.$key.'][comments]['.$commentKey.'][example]') ? input::old('attribute['.$key.'][comments]['.$commentKey.'][example]') : $comment->example, array('class' => 'form-control')) }}
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    {{ form::label('attribute['.$key.'][comments]['.$commentKey.'][description]', 'Descrição') }}
+                                    {{ form::text('attribute['.$key.'][comments]['.$commentKey.'][description]', input::old('attribute['.$key.'][comments]['.$commentKey.'][description]') ? input::old('attribute['.$key.'][comments]['.$commentKey.'][description]') : $comment->description, array('class' => 'form-control')) }}
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    {{ form::label('attribute['.$key.'][comments]['.$commentKey.'][note]', 'Observação') }}
+                                    {{ form::text('attribute['.$key.'][comments]['.$commentKey.'][note]', input::old('attribute['.$key.'][comments]['.$commentKey.'][note]') ? input::old('attribute['.$key.'][comments]['.$commentKey.'][note]') : $comment->note, array('class' => 'form-control')) }}
+                                </div>
+                            </div>
+                       </div>
+                       <div class="row">
+                            <div class="col-sm-2">
+                                <span data-repeater-delete="" class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove"></span> Delete
+                                </span>
+                            </div>
+                       </div>
+                   </div>
+                 </div>
+                 <hr>
+                <div class="row form-group">
+                  <div class="col-sm-11">
+                  <span data-repeater-create="" class="btn btn-info btn-md">
+                      <span class="glyphicon glyphicon-plus"></span> Add
+                  </span>
+                  </div>
                 </div>
-
+               </div>
+           @endForeach
+           <h2>Seção</h2>
+           <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
                         {{ form::label('attribute['.$key.'][section]', 'Section') }}
                         {{ form::text('attribute['.$key.'][section]', input::old('attribute['.$key.'][Section]') ? input::old('attribute['.$key.'][Section]') : $webAttribute->section, array('class' => 'form-control')) }}
                     </div>
                 </div>
-
+            </div>
+            <div class="row">
                 <div class="col-sm-2">
                     <span data-repeater-delete="" class="btn btn-danger btn-sm">
                     <span class="glyphicon glyphicon-remove"></span> Delete
