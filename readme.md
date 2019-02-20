@@ -52,8 +52,8 @@ Caso a informação solicitada não esteja disponível retornar: 'nao_disponivel
 
 ---
 
-    ### Enhanced E-commerce
-            
+### Enhanced E-commerce
+
 **Na visualização de um banner**<br />
 
 - ** Onde:** Na home
@@ -74,12 +74,12 @@ Caso a informação solicitada não esteja disponível retornar: 'nao_disponivel
 >Botão</i>
 ```
 
-    | Variável        | Exemplo                               | Descrição                         |
+| Variável        | Exemplo                               | Descrição                         |
 | :-------------- | :------------------------------------ | :-------------------------------- |
-        | [[variavel]] | exemplo | aaaaaaaaa |
-    <br />
+| [[variavel]] | exemplo | aaaaaaaaa |
+<br />
 
-    
+
 **No clique de qualquer banner**<br />
 
 - ** Onde:** Na home
@@ -100,12 +100,12 @@ Caso a informação solicitada não esteja disponível retornar: 'nao_disponivel
 >Botão</i>
 ```
 
-    | Variável        | Exemplo                               | Descrição                         |
+| Variável        | Exemplo                               | Descrição                         |
 | :-------------- | :------------------------------------ | :-------------------------------- |
-        | [[variavel]] | exemplo | aaaaaaaaa |
-    <br />
+| [[variavel]] | exemplo | aaaaaaaaa |
+<br />
 
-    
+
 **Na remoção de um produto dentro do carrinho**<br />
 
 - ** Onde:** Após o clique no ícone da Lixeira dentro da Sacola de compras, e nos botões para remover os produtos do Carrinho de compras
@@ -127,11 +127,11 @@ Caso a informação solicitada não esteja disponível retornar: 'nao_disponivel
 >Botão</i>
 ```
 
-    | Variável        | Exemplo                               | Descrição                         |
+| Variável        | Exemplo                               | Descrição                         |
 | :-------------- | :------------------------------------ | :-------------------------------- |
-        <br />
+<br />
 
-    
+
 ****<br />
 
 - ** Onde:** 
@@ -152,10 +152,10 @@ Caso a informação solicitada não esteja disponível retornar: 'nao_disponivel
 >Botão</i>
 ```
 
-    | Variável        | Exemplo                               | Descrição                         |
+| Variável        | Exemplo                               | Descrição                         |
 | :-------------- | :------------------------------------ | :-------------------------------- |
-        | [[variavel]] | exemplo | aaaaaaaaa |
-    <br />
+| [[variavel]] | exemplo | aaaaaaaaa |
+<br />
 
 
 <br />
