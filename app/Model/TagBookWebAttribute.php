@@ -40,6 +40,13 @@ class TagBookWebAttribute extends Model
         'not_apply' => 'NOT APPLY',
     ];
 
+    public $dataTypes = [
+        'dataLayer' => 'dataLayer',
+        'dataAttribute' => 'dataAttribute',
+        'enhancedECommerceDataAttribute' => 'enhancedECommerceDataAttribute',
+        'enhancedECommerceDataLayer' => 'enhancedECommerceDataLayer',
+    ];
+
     public $trackType = [
         '-' => '-',
         'custom_html' => 'Custom HTML',
@@ -79,5 +86,10 @@ class TagBookWebAttribute extends Model
     public function comments()
     {
         return $this->hasMany('App\Model\AttributeComment');
+    }
+
+    public function dimensions()
+    {
+        return $this->hasMany('App\Model\CustomDimension');
     }
 }
