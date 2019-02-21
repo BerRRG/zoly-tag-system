@@ -65,6 +65,29 @@ Caso a informação solicitada não esteja disponível retornar: 'nao_disponivel
 - ** Titulo ou nome do botão/link:** {{ $attribute->description_button }}
     @endif
 
+@if($attribute->data_layer_data_attribute == 'dataLayer')
+@php
+$dimensions = $attribute->dimensions()->get();
+@endphp
+```html
+<script>
+  dataLayer.push({
+    'event': '{{$attribute->data_layer_event}}',
+    'eventCategory': '{{$attribute->event_category}}',
+    'eventAction': '{{$attribute->event_action}}',
+    'eventLabel': '{{$attribute->event_label_var}}'@if($dimensions),@endif
+
+@if($dimensions)
+@foreach($dimensions as $dimension)
+    '{{$dimension->name}}': '{{$dimension->variable}}',
+@endforeach
+@endif
+  });
+</script>
+```
+@endif
+
+@if($attribute->data_layer_data_attribute == 'dataAttribute')
 ```html
 <!-- Use se o elemento for um link -->
 <a href='#' class='gtm-link-event'
@@ -80,6 +103,7 @@ Caso a informação solicitada não esteja disponível retornar: 'nao_disponivel
    data-gtm-event-label='{{ $attribute->event_lavel_var }}'
 >Botão</i>
 ```
+@endif
 
 @if ($attribute->comments()->get())
 | Variável        | Exemplo                               | Descrição                         |
