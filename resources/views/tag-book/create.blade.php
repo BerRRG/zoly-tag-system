@@ -17,6 +17,8 @@
             initval: 1,
             repeaters: [{
                 selector: '.inner-repeater'
+            },{
+                selector: '.dimension-repeater'
             }]
         });
 
@@ -134,10 +136,17 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     {{ form::label('attribute[0][data_layer_data_attribute]', 'dataLayer ou data-attributes') }}
-                    {{ form::text('attribute[0][data_layer_data_attribute]', input::old('attribute[0][data_layer_data_attribute]'), array('class' => 'form-control')) }}
+                    {{ form::select('attribute[0][data_layer_data_attribute]', $webAttribute->dataTypes, input::old('attribute[0][data_layer_data_attribute]'), array('class' => 'form-control')) }}
                 </div>
             </div>
             <div class="col-sm-3">
+                <div class="form-group">
+                    {{ form::label('attribute[0][data_layer_event]', 'dataLayer event(se necessario)') }}
+                    {{ form::select('attribute[0][data_layer_event]', $webAttribute->dataTypes, input::old('attribute[0][data_layer_event]'), array('class' => 'form-control')) }}
+                </div>
+            </div>
+
+            <div class="col-sm-2">
                 {{ form::label('attribute[0][status_implemetation_data_layer_data_attribute]', 'Status Implementation dataLayer ou data-attributes', ['class' => ' col-2 text-truncate']) }}
                     {{ form::select('attribute[0][status_implemetation_data_layer_data_attribute]', $webAttribute->implementationStatus, input::old('attribute[0][status_implemetation_data_layer_data_attribute]'), array('class' => 'form-control')) }}
             </div>
@@ -155,15 +164,15 @@
                 </div>
             </div>
 
-            <div class="col-sm-2">
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
                 <div class="form-group">
                     {{ form::label('attribute[0][track_type]', 'Track Type') }}
                     {{ form::select('attribute[0][track_type]', $webAttribute->trackType, input::old('attribute[0][track_type]'), array('class' => 'form-control')) }}
                 </div>
             </div>
-        </div>
-
-        <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
                     {{ form::label('attribute[0][tag_name]', 'Tag Name') }}
@@ -184,15 +193,15 @@
                 </div>
             </div>
 
+        </div>
+
+        <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
                     {{ form::label('attribute[0][event_action]', 'Event Action') }}
                     {{ form::text('attribute[0][event_action]', input::old('attribute[0][event_action]'), array('class' => 'form-control')) }}
                 </div>
             </div>
-        </div>
-
-        <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
                     {{ form::label('attribute[0][event_label_var]', 'Event Label/Var') }}
@@ -206,13 +215,48 @@
                     {{ form::text('attribute[0][event_value]', input::old('attribute[0][event_value]'), array('class' => 'form-control')) }}
                 </div>
             </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    {{ form::label('attribute[0][custom_dimension_metrics]', 'Custom Dimensions & Metrics') }}
-                    {{ form::text('attribute[0][custom_dimension_metrics]', input::old('attribute[0][custom_dimension_metrics]'), array('class' => 'form-control')) }}
-                </div>
-            </div>
-
+        </div>
+        <h2>Custom Dimensions</h2>
+        <div class="dimension-repeater">
+          <div data-repeater-list="attribute-dimensions" class="drag">
+            <div data-repeater-item="">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('attribute[0][dimensions][0][label]', 'Descrição') }}
+                            {{ form::text('attribute[0][dimensions][0][label]', input::old('attribute[0][dimensions][0][label]'), array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('attribute[0][dimensions][0][variable]', 'Variável') }}
+                            {{ form::text('attribute[0][dimensions][0][variable]', input::old('attribute[0][dimensions][0][variable]'), array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            {{ form::label('attribute[0][dimensions][0][name]', 'Exemplo') }}
+                            {{ form::text('attribute[0][dimensions][0][name]', input::old('attribute[0][dimensions][0][name]'), array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <span data-repeater-delete="" class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-remove"></span> Delete
+                        </span>
+                    </div>
+               </div>
+           </div>
+         </div>
+         <hr>
+        <div class="row form-group">
+          <div class="col-sm-11">
+          <span data-repeater-create="" class="btn btn-info btn-md">
+              <span class="glyphicon glyphicon-plus"></span> Add
+          </span>
+          </div>
+        </div>
+       </div>
+        <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
                     {{ form::label('attribute[0][additional]', 'Additional') }}
