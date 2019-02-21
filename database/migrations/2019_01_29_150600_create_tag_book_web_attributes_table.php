@@ -20,7 +20,16 @@ class CreateTagBookWebAttributesTable extends Migration
             $table->string('description_when')->nullable();
             $table->string('description_where')->nullable();
             $table->string('description_button')->nullable();
-            $table->string('data_layer_data_attribute')->nullable();
+            $table->enum(
+                'data_layer_data_attribute',
+                [
+                    'dataLayer',
+                    'dataAttribute',
+                    'enhancedECommerceDataAttribute',
+                    'enhancedECommerceDataLayer',
+                ]
+            )->default('dataLayer');
+            $table->string('data_layer_event')->nullable();
             $table->enum(
                 'status_implementation_data_layer_data_attribute',
                 [
@@ -73,7 +82,6 @@ class CreateTagBookWebAttributesTable extends Migration
             $table->string('event_action')->nullable();
             $table->string('event_label_var')->nullable();
             $table->string('event_value')->nullable();
-            $table->string('custom_dimension_metrics')->nullable();
             $table->string('additional')->nullable();
             $table->string('comments')->nullable();
             $table->string('section')->nullable();
