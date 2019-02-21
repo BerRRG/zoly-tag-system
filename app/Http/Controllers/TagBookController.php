@@ -109,7 +109,9 @@ class TagBookController extends Controller
         }
 
         $tagBook = TagBook::find($id);
-        $saveFlow = new TagBookSaveFlow($tagBook, Input::all());
+        $input = Input::all();
+        unset($input['attribute']['0']);
+        $saveFlow = new TagBookSaveFlow($tagBook, $input);
         $saveFlow->save();
 
         Session::flash('message', 'Tag Book alterado com sucesso!');
@@ -148,7 +150,6 @@ class TagBookController extends Controller
             'uploadType' => 'multipart',
             'fields' => 'id'
         ]);
-
         $documentationExporter = new DocumentationExporter($id);
         $documentationExporter->export();
 
