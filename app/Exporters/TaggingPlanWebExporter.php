@@ -51,7 +51,6 @@ class TaggingPlanWebExporter implements FromView, WithHeadings, ShouldAutoSize, 
                 'event_action',
                 'event_label_var',
                 'event_value',
-                'custom_dimension_metrics',
                 'additional',
                 'comments',
                 'section',
@@ -68,13 +67,15 @@ class TaggingPlanWebExporter implements FromView, WithHeadings, ShouldAutoSize, 
         ]);
     }
 
-    protected function getRows($id) {
+    protected function getRows($id)
+    {
         $query = $this->query();
 
         return $query->count();
     }
 
-    protected function getSections($id) {
+    protected function getSections($id)
+    {
         $query = $this->query();
         $query->select('id', 'order');
         $query->whereNotNull('section');
