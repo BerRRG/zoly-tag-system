@@ -77,7 +77,20 @@ class CreateTagBookWebAttributesTable extends Migration
                 ]
             )->default('-');
             $table->string('tag_name')->nullable();
-            $table->string('fields_to_set')->nullable();
+            $table->string('fields_to_set_no_interaction')->nullable();
+            $table->enum(
+                'fields_to_set_type',
+                [
+                    '',
+                    'promoView',
+                    'promoClick',
+                    'detail',
+                    'add',
+                    'checkout',
+                    'purchase',
+                ]
+            )->default('')->nullable();
+            $table->string('fields_to_set_example')->nullable();
             $table->string('event_category')->nullable();
             $table->string('event_action')->nullable();
             $table->string('event_label_var')->nullable();
