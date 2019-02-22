@@ -105,6 +105,10 @@ $dimensions = $attribute->dimensions()->get();
 ```
 @endif
 
+@if($attribute->fields_to_set_type)
+@include('exports.documentation.ecommerce.'.$attribute->fields_to_set_type)
+@endif
+
 @if ($attribute->comments()->get())
 | Variável        | Exemplo                               | Descrição                         |
 | :-------------- | :------------------------------------ | :-------------------------------- |
