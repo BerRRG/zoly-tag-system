@@ -18,12 +18,13 @@ class TagBookWebAttribute extends Model
         'status_google_analytics',
         'track_type',
         'tag_name',
-        'fields_to_set',
+        'fields_to_set_no_interaction',
+        'fields_to_set_type',
+        'fields_to_set_example',
         'event_category',
         'event_action',
         'event_label_var',
         'event_value',
-        'custom_dimension_metrics',
         'additional',
         'comments',
         'section',
@@ -45,6 +46,16 @@ class TagBookWebAttribute extends Model
         'dataAttribute' => 'dataAttribute',
         'enhancedECommerceDataAttribute' => 'enhancedECommerceDataAttribute',
         'enhancedECommerceDataLayer' => 'enhancedECommerceDataLayer',
+    ];
+
+    public $fieldSetTypes = [
+        '' => '',
+        'promoView' => 'promoView',
+        'promoClick' => 'promoClick',
+        'detail' => 'detail',
+        'add' => 'add',
+        'checkout' => 'checkout',
+        'purchase' => 'purchase',
     ];
 
     public $trackType = [
