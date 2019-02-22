@@ -2,10 +2,9 @@
 <div>
     <div class="repeater-default">
         <div data-repeater-list="attribute" class="drag">
-            <div disabled="true" style display="none">
-            @include('tag-book.partials.default-clone-web-attribute-item')
+            <div type="hidden">
+                @include('tag-book.partials.default-item-clone-web-attribute-item')
             </div>
-
             @foreach($webAttributes as $key => $webAttribute)
                 <div data-repeater-item="">
                     <input type="hidden" value="{{$webAttribute->id}}" name="attribute[{{$key}}][id]">
@@ -91,8 +90,22 @@
 
                         <div class="col-sm-3">
                             <div class="form-group">
-                                {{ form::label('attribute['.$key.'][fields_to_set]', 'Fields to Set') }}
-                                {{ form::text('attribute['.$key.'][fields_to_set]', input::old('attribute['.$key.'][fields_to_set]') ? input::old('attribute['.$key.'][fields_to_set]') : $webAttribute->fields_to_set, array('class' => 'form-control')) }}
+                                {{ form::label('attribute['.$key.'][fields_to_set_no_interaction]', 'Fields to Set(noInteraction)') }}
+                                {{ form::text('attribute['.$key.'][fields_to_set_no_interaction]', input::old('attribute['.$key.'][fields_to_set_no_interaction]') ? input::old('attribute['.$key.'][fields_to_set_no_interaction]') : $webAttribute->fields_to_set_no_interaction, array('class' => 'form-control')) }}
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                {{ form::label('attribute['.$key.'][fields_to_set_type]', 'Fields to Set(type)') }}
+                                {{ form::select('attribute['.$key.'][fields_to_set_type]', $webAttribute->fieldSetTypes, input::old('attribute['.$key.'][fields_to_set_type]') ? input::old('attribute['.$key.'][fields_to_set_type]') : $webAttribute->fields_to_set_type, array('class' => 'form-control')) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                {{ form::label('attribute['.$key.'][fields_to_set_example]', 'Fields to Set(example)') }}
+                                {{ form::text('attribute['.$key.'][fields_to_set_example]', input::old('attribute['.$key.'][fields_to_set_example]') ? input::old('attribute['.$key.'][fields_to_set_example]') : $webAttribute->fields_to_set_example, array('class' => 'form-control')) }}
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -101,14 +114,12 @@
                                 {{ form::text('attribute['.$key.'][event_category]', input::old('attribute['.$key.'][event_category]') ? input::old('attribute['.$key.'][event_category]') : $webAttribute->event_category, array('class' => 'form-control')) }}
                             </div>
                         </div>
-
                         <div class="col-sm-3">
                             <div class="form-group">
                                 {{ form::label('attribute['.$key.'][event_action]', 'Event Action') }}
                                 {{ form::text('attribute['.$key.'][event_action]', input::old('attribute['.$key.'][event_action]') ? input::old('attribute['.$key.'][event_action]') : $webAttribute->event_action, array('class' => 'form-control')) }}
                             </div>
                         </div>
-
                         <div class="col-sm-3">
                             <div class="form-group">
                                 {{ form::label('attribute['.$key.'][event_label_var]', 'Event Label/Var') }}
